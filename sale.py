@@ -98,7 +98,6 @@ class Sale:
         """
         Line = Pool().get('sale.line')
         Tax = Pool().get('account.tax')
-        Sale = Pool().get('sale.sale')
 
         tax_update_date = datetime.utcnow()
 

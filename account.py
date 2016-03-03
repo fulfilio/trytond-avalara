@@ -110,8 +110,9 @@ class TaxCode:
         states=STATES, depends=DEPENDS
     )
     subdivision = fields.Many2One("country.subdivision",
-            'Subdivision', domain=[('country', '=', Eval('country'))],
-            states=STATES, depends=['active', 'country'])
+        'Subdivision', domain=[('country', '=', Eval('country'))],
+        states=STATES, depends=['active', 'country']
+    )
 
     # XXX: This could be a Select field if all values are known
     juris_type = fields.Char('Jurisdiction Type', states=STATES)
@@ -128,8 +129,8 @@ class TaxCode:
 
     @fields.depends('country', 'subdivision')
     def on_change_country(self):
-        if (self.subdivision
-                and self.subdivision.country != self.country):
+        if (self.subdivision and
+                self.subdivision.country != self.country):
             return {'subdivision': None}
         return {}
 
